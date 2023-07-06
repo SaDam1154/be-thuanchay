@@ -1,0 +1,32 @@
+{
+  "name": "se100.n11_nhom12_be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaDam1154/SE100.N11_Nhom12_BE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaDam1154/SE100.N11_Nhom12_BE/issues"
+  },
+  "homepage": "https://github.com/SaDam1154/SE100.N11_Nhom12_BE#readme",
+  "dependencies": {
+    "argon2": "^0.30.2",
+    "cloudinary": "^1.32.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.3",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-sequence": "^5.3.1",
+    "nodemon": "^2.0.20",
+    "qs": "^6.11.0",
+    "query-types": "^0.1.4"
+  }
+}
