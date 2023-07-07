@@ -10,9 +10,11 @@ const detailOrder = require('./detailOrder');
 const user = require('./user');
 const role = require('./role');
 const auth = require('./auth');
+const account = require('./account');
 const func = require('./function');
 
 router.use('/product', productRoute);
+router.use('/account', account);
 router.use('/post', postRoute);
 router.use('/product-type', productTypeRoute);
 router.use('/categories', categoryRoute);

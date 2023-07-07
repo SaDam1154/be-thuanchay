@@ -1,27 +1,27 @@
-const User = require('../models/User');
+const Account = require('../models/Account');
 const argon2 = require('argon2');
 const Permission = require('../models/Permission');
 
 // [POST] api/auth/login
 const login = async (req, res, next) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!email || !password) {
+    if (!username || !password) {
         return res.status(400).json({ success: false, status: 400, message: 'Missed field' });
     }
 
     try {
-        let user;
-        user = await User.findOne({ email }).populate('role');
-        if (!user) {
-            return res.status(401).json({ success: false, status: 401, message: 'email incorrect' });
+        let account;
+        account = await Account.findOne({ username }).populate('role');
+        if (!account) {
+            return res.status(401).json({ success: false, status: 401, message: 'username incorrect' });
         }
 
-        if (!(await argon2.verify(user.password, password))) {
+        if (!(await argon2.verify(account.password, password))) {
             return res.status(401).json({ success: false, status: 401, message: 'password incorrect' });
         }
 
-        const role = user.toObject().role._id;
+        const role = account.toObject().role._id;
 
         // Get function
         let permissions;
@@ -31,7 +31,7 @@ const login = async (req, res, next) => {
             return permission.toObject().function;
         });
 
-        return res.status(200).json({ success: true, user: { ...user.toObject(), functions } });
+        return res.status(200).json({ success: true, account: { ...account.toObject(), functions } });
     } catch (err) {
         console.log(err);
         return res.status(500).json({ success: false, status: 500, message: 'Internal server error' });
