@@ -47,6 +47,8 @@ const create = async (req, res, next) => {
         const newAccount = new Account({
             username,
             name,
+            phone,
+            address,
             email,
             password: hash,
             role,
