@@ -19,31 +19,6 @@ app.use(parseFilters, parseSorts);
 // route
 app.use('/api', route);
 
-app.get('/x/product', async (req, res) => {
-    try {
-        let products;
-        products = await Product.aggregate([
-            {
-                $lookup: {
-                    from: 'product_types',
-                    localField: 'type',
-                    foreignField: '_id',
-                    as: 'type',
-                },
-            },
-            {
-                $unwind: '$type',
-            },
-            { $match: req.filters },
-            { $sort: req.sorts },
-        ]);
-        return res.status(200).json({ success: true, products });
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json({ success: false, status: 500, message: 'Internal server error' });
-    }
-    res.json('Hello world 12345!');
-});
 app.get('/', (req, res) => {
     res.json('Hello world 12345!');
 });
