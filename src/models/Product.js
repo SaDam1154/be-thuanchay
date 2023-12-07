@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
-const mongooseDelete = require('mongoose-delete');
+const mongoose = require("mongoose");
+const AutoIncrement = require("mongoose-sequence")(mongoose);
+const mongooseDelete = require("mongoose-delete");
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
@@ -25,9 +25,9 @@ const ProductSchema = new Schema(
         description: {
             type: String,
         },
-        category: {
+        type: {
             type: Schema.Types.ObjectId,
-            ref: 'categories',
+            ref: "type",
             required: true,
         },
         quantity: {
@@ -44,7 +44,7 @@ const ProductSchema = new Schema(
     }
 );
 
-ProductSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
-ProductSchema.plugin(AutoIncrement, { id: 'products', inc_field: 'id' });
+ProductSchema.plugin(mongooseDelete, { deletedAt: true, overrideMethods: "all" });
+ProductSchema.plugin(AutoIncrement, { id: "products", inc_field: "id" });
 
-module.exports = mongoose.model('products', ProductSchema);
+module.exports = mongoose.model("products", ProductSchema);
